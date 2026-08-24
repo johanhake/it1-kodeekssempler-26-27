@@ -1,0 +1,51 @@
+/* CSS (stil og formatering) til nettsiden */
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: darkslategrey;
+    font-size: 12px;
+    color: white;
+}
+
+hode, føtter{
+    background-color: lightskyblue;
+    color: darkblue;
+    padding: 5px;
+    text-align: center;
+}
+
+article{
+    background-color: lightblue;
+    color: darkslateblue;
+    padding: 5px;
+}
+
+h1, h3 {
+    text-align: center;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.bilder {
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
+#tekno-hode {
+    width: 50%;
+    float: right;
+}
+
+@media (max-width: 700px){
+    main {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #samfunnsfag{
+        grid-column: span 2;
+    }
+}
