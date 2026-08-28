@@ -25,23 +25,24 @@
 <body>
 	<h2>Skjema for registrering klassefest!</h2>
 	<form action="1.09_registrering.html">
-		<input type="text" name="fornavn"placeholder="Hva heter du">
+		<input type="text" name="fornavn" placeholder="Hva heter du" required>
 		<br>
-		<input type="number" placeholder="Hvor gammel er du?">
+		<input type="number" name="alder" placeholder="Hvor gammel er du?" min="0" required>
 		<br>
-		<select>
-			<option>Hamburger</option>
-			<option>Pizza</option>
-			<option>Taco</option>
+		<select name="mat" required>
+			<option value="">Hva ønsker du å spise</option>
+			<option value="hamburger">Hamburger</option>
+			<option value="pizza">Pizza</option>
+			<option value="taco">Taco</option>
 		</select>
 		<br>
 		<h3>Hva ønsker du å drikke til maten?</h3>
-		<input type="radio"><label>Brus</label>
-		<input type="radio"><label>Saft</label>
-		<input type="radio"><label>Vann</label>
+		<input type="radio" value="brus" name="drikke" id="brus"><label for="brus">Brus</label>
+		<input type="radio" value="saft" name="drikke" id="saft"><label for="saft">Saft</label>
+		<input type="radio" value="vann" name="drikke" id="vann"><label for="vann">Vann</label>
 		<br>
-		<input type="checkbox"><label>Ketsjup</label>
-		<input type="checkbox"><label>Sennep</label>
+		<input type="checkbox" name="ketsjup" id="ketsjup"><label for="ketsjup">Ketsjup</label>
+		<input type="checkbox" name="sennep" id="sennep"><label for="sennep">Sennep</label>
 		<br>
 		<button>Send inn</button>
 	</form>
