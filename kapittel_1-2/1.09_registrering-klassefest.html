@@ -7,17 +7,36 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<style>
-		body{
+		body {
 			font-family: Verdana, Geneva, Tahoma, sans-serif;
 		}
-		
-		input[type=text], input[type=number], select{
+
+		input[type=text],
+		input[type=number],
+		select {
 			width: 200px;
 		}
 
-		label{
+		label {
 			display: inline-block;
 			width: 100px;
+		}
+
+		label img{
+			width: 100px;
+			border: 5px white solid;
+		}
+
+		:checked + label img{
+			border: 5px red solid;
+		}
+
+		input[type=radio]{
+			display: none;
+		}
+
+		input[type=radio] + label{
+			margin: 5px;
 		}
 	</style>
 </head>
@@ -37,13 +56,17 @@
 		</select>
 		<br>
 		<h3>Hva ønsker du å drikke til maten?</h3>
-		<input type="radio" value="brus" name="drikke" id="brus"><label for="brus">Brus</label>
-		<input type="radio" value="saft" name="drikke" id="saft"><label for="saft">Saft</label>
-		<input type="radio" value="vann" name="drikke" id="vann"><label for="vann">Vann</label>
+		<input type="radio" value="brus" name="drikke" id="brus"><label for="brus">Brus<img src="bilder/brus.png" alt=""></label>
+		<input type="radio" value="saft" name="drikke" id="saft"><label for="saft">Saft<img src="bilder/brus.png" alt=""></label>
+		<input type="radio" value="vann" name="drikke" id="vann" checked><label for="vann">Vann<img src="bilder/vann.png" alt=""></label>
 		<br>
 		<input type="checkbox" name="ketsjup" id="ketsjup"><label for="ketsjup">Ketsjup</label>
 		<input type="checkbox" name="sennep" id="sennep"><label for="sennep">Sennep</label>
 		<br>
+		<h3>Kredittkort</h3>
+		<input type="text" pattern="\d{4}-\d{4}-\d{4}-\d{4}"
+			title="Vennligst oppgi kortnummeret i formatet: 1231-3245-2343-2342" placeholder="1231-3245-2343-2342"
+			inputmode="numeric" required><br>
 		<button>Send inn</button>
 	</form>
 </body>
