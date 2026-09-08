@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			width: 50%;
+			font-family: Arial, Helvetica, sans-serif;
+			margin: 0 auto;
+		}
+	</style>
+	<title>Document</title>
+</head>
+
+<body>
+	<!-- Et skjema for å registrer en deltaker -->
+	<form action="registrering.html">
+		<label for="">Navn</label>
+		<input type="text" name="navn" required placeholder="Skriv navn...">
+		<label for="">Alder</label>
+		<input type="number" name="alder" required placeholder="Skriv alder...">
+		<label for="">Kort nr (4x4 tall)</label>
+		<input type="text" placeholder="XXXX XXXX XXXX XXXX" pattern="^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$"
+			required>
+
+		<label for="">Farge</label>
+
+		<div class="checkboxes">
+			<input type="radio" name="farge" value="rød" id="rb-rød" checked>
+			<label for="rb-rød">Rød</label>
+			<input type="radio" name="farge" value="grønn" id="rb-grønn">
+			<label for="rb-grønn">Grønn</label>
+			<input type="radio" name="farge" value="blå" id="rb-blå">
+			<label for="rb-blå">Blå</label>
+		</div>
+
+		<label for="">Brus</label>
+		<div class="checkboxes">
+			<input type="checkbox" id="cb-cola" name="cola"><label for="cb-cola">Cola</label>
+			<input type="checkbox" id="cb-sprite" name="sprite"><label for="cb-sprite">Sprite</label>
+			<input type="checkbox" id="cb-fanta" name="fanta"><label for="cb-fanta">Fanta</label>
+		</div>
+
+		<select name="spise" required>
+			<option value="">Hva ønsker du å spise</option>
+			<option value="pølse">Pølse</option>
+			<option value="salat">Salat</option>
+			<option value="pommes">Pommes</option>
+		</select>
+		<button>Registrer</button>
+	</form>
+</body>
+
+</html>
