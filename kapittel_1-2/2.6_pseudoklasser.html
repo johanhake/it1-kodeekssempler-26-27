@@ -6,17 +6,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Forfatter</title>
 	<style>
-		html{
+		html {
 			font-size: 50px;
+
 		}
 
-		input{
+		input {
 			height: 1.5rem;
 			font-size: 1rem;
 		}
 
 		/* Eksempel med focus box-shadow: inset 0 2px 5px red;*/
-		
+		input[type=text]:active{
+			background-color: aliceblue;
+		}
+
+		input[type=text]:focus{
+			background-color: antiquewhite;
+			box-shadow: inset 2px 2px 5px red, inset -2px -2px 5px red;
+		}
 
 		/* Virker ikke for at vi ikke kan style selve checkboxen*/
 		input[type=checkbox]:checked {
@@ -24,19 +32,24 @@
 		}
 
 		/* Eksempel med hover, active*/
-		img{
+		img {
 			border: white 10px solid;
 		}
 
 
 		/* Eksempel med nth-child()*/
-		li {
+		li:nth-child(odd) {
 			background-color: aquamarine;
 		}
 
-		a:hover{
-			background-color: black;
-			color: white;
+		a{
+			transition: 0.25s;
+		}
+
+		a:hover {
+			cursor: crosshair;
+			background-color: red;
+			color: white
 		}
 	</style>
 </head>
