@@ -12,19 +12,28 @@
 		}
 
 		/* h1 + p, h2 ~p*/
+		#første h1~p {
+			background-color: aqua;
+		}
 
+		#andre h1+p {
+			background-color: blueviolet;
+			color: white;
+		}
 	</style>
 </head>
 
 <body>
-	<div>
-		<h1>Kombinere med +</h1>
+	<div id="første">
+		<p>Nullte avsnitt</p>
+		<h1>Kombinere med ~</h1>
 		<p>Første avsnitt</p>
+		<li>En liten luring</li>
 		<p>Andre avsnitt</p>
 		<p>Tredje avsnitt</p>
 	</div>
-	<div>
-		<h2>Kombinere med ~</h2>
+	<div id="andre">
+		<h1>Kombinere med +</h1>
 		<p>Første avsnitt</p>
 		<p>Andre avsnitt</p>
 		<p>Tredje avsnitt</p>

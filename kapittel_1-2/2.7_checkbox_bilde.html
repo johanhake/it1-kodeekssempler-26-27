@@ -10,14 +10,17 @@
             width: 200px;
         }
 
-        input[type=checkbox]{
-            display: inline;
+        input[type=checkbox] {
+            display: none;
         }
 
-        input[type=checkbox] + img{
+        input[type=checkbox]+img {
             border: 5px white solid;
         }
 
+        input[type=checkbox]:checked+img {
+            border: 5px red solid;
+        }
     </style>
 </head>
 
