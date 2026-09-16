@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    width: 600px;
+    background-color: lightseagreen;
+    margin: 0 auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1+img {
+    display: block;
+    margin: 0 auto;
+    margin: 10px 0;
+}
+
+main>ul {
+    margin-left: 30px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav a {
+    display: block;
+    width: 100px;
+    background-color: brown;
+    color: white;
+    border: solid black 1px;
+    text-align: center;
+    padding: 10px 0;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+a:hover {
+    background-color: lightcoral;
+}
+
+a:active {
+    background-color: coral;
+}
