@@ -1,0 +1,77 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width:600px;
+    background-color: #101010;
+    margin: 0 auto;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+h1, h2 {
+    color: lightblue;
+    margin: 50px 0 10px 0;
+    font-weight: bold;
+}
+
+h1{
+    text-align: center;
+}
+
+p {
+    margin: 0 0 20px 0;
+    color: white;
+}
+
+nav ul {
+    background-color: #101010;
+    display: flex;
+}
+
+nav ul li {
+    list-style: none;
+    display: block;
+    width: 150px;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+}
+
+nav ul li a {
+    width: 100%;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+}
+
+nav ul li:last-child {
+    border-right: 2px solid white;
+}
+
+nav ul li a:hover {
+    background-color: white;
+    color: black;
+}
+
+nav ul li a:active {
+    background-color: darkgrey;
+}
+
+.illustrasjon {
+    display: block;
+    margin: 30px auto;
+    border: 5px solid white;
+    box-shadow: 0 0 15px white;
+    border-radius: 50px;
+}
+
+#bunntekst {
+    padding-top: 5px;
+    border-top: solid 2px white;
+}
