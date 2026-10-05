@@ -1,0 +1,76 @@
+body{
+    width: 800px;
+    margin: 0 auto;
+    background-color: darkred;
+    color: white;
+    font-family: Verdana, sans-serif;
+}
+
+#toppbilde{
+    width: 100%;
+}
+
+#illustrasjonsbilde{
+    width: 50%;
+    border: 5px white solid;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    display: block;
+    margin: 0 auto;
+}
+
+h1 {
+   text-align: center;
+}
+
+ol {
+    display: block;
+    width: 100px;
+    margin: 10px auto;
+}
+
+ol li:nth-child(odd) {
+    background-color: black;
+}
+
+ol li:nth-child(even) {
+    background-color: darkgrey;
+}
+
+
+
+/*nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0;
+    border: solid 2px black;
+    border-right: none;
+}
+
+nav ul li a {
+    display: block;
+    width: 196px;
+    padding: 10px 0;
+    text-decoration: none;
+    background-color: darkgrey;
+    color: white;
+    text-align: center;
+}
+
+nav ul li a:hover {
+    background-color: black;
+}
+
+nav ul li a:active {
+    background-color: dimgrey;
+}
+
+nav     ul li:last-child {
+    border-right: solid 2px black;
+}
+*/
