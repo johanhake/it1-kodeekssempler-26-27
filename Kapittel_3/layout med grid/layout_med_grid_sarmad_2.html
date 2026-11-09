@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Grid: minmax</title>
+    <style>
+        section {
+            display: grid;
+            grid-template-columns: minmax(300px, 500px);
+            /*grid-template-rows: minmax(30px, 100px);*/
+            grid-auto-rows: minmax(30px, auto);  
+        }
+        article {
+            background-color: lightgreen;
+            border: 1px solid gray;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <article>Her er det en del tekst.Skiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii Men den får ikke plass i ruta.</article>
+        <article>Her er det en del tekst.Men den får ikke plass i ruta.</article>
+        <article>Her er det en del tekst. Men den får ikke plass i ruta.</article>
+    </section>
+</body>
+</html>
