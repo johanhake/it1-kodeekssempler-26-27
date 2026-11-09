@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Grid – Teaching Demonstration</title>
+
+<style>
+
+/* ==========================================
+   1. GENERAL PAGE STYLING
+========================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f3f6;
+    margin: 0;
+    padding: 30px;
+    color: #222;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.description {
+    text-align: center;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+
+/* ==========================================
+   2. GRID CONTAINER
+========================================== */
+
+.grid-container {
+
+    display: grid;
+
+    /* --------------------------------------
+       FRACTIONS (fr)
+    -------------------------------------- */
+
+    /* Three equal columns */
+    grid-template-columns: 1fr 1fr 1fr;
+
+    /* First column takes twice as much space */
+    /* grid-template-columns: 2fr 1fr; */
+
+    /* Different fractional proportions */
+     /* grid-template-columns: 1fr 2fr 3fr;  */
+
+    /* Four columns with different proportions */
+    /* grid-template-columns: 1fr 2fr 1fr 3fr; */
+
+    /* Fixed width combined with fractions */
+    /* grid-template-columns: 200px 1fr 2fr; */
+
+    /* Repeat function: four equal columns */
+    /* grid-template-columns: repeat(4, 1fr); */
+
+    /* One column 16 pixels + six equal columns */
+    /* grid-template-columns: 16px repeat(6, 1fr); */
+
+
+    /* --------------------------------------
+       MINMAX()
+    -------------------------------------- */
+     /* First parameter is number of columns, second is size */
+    /* Column cannot become narrower than 150px */
+    /* grid-template-columns: repeat(3, minmax(150px, 1fr));  */
+
+    /* Minimum 100px, maximum 1fr */
+    /* grid-template-columns: repeat(3, minmax(100px, 1fr)); */
+
+    /* First column flexible, second fixed */
+    /* grid-template-columns: minmax(200px, 2fr) 1fr; */
+
+
+    /* --------------------------------------
+       AUTO-FIT
+    -------------------------------------- */
+
+    /* Automatically fits as many columns as possible */
+     /* grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));  */
+
+    /* Responsive columns with a minimum width of 200px */
+    /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+
+
+    /* --------------------------------------
+       AUTO-FILL
+    -------------------------------------- */
+
+    /* Similar to auto-fit, but preserves empty tracks */
+    /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
+
+
+    /* --------------------------------------
+       ROW HEIGHTS
+    -------------------------------------- */
+
+    /* Every row has a minimum height of 120px */
+    /* grid-auto-rows: minmax(120px, auto); */
+
+    /* Every row has a minimum of 100px and maximum of 200px */
+    /* grid-auto-rows: minmax(100px, 200px); */
+
+    /* All implicit rows are 150px high */
+    /* grid-auto-rows: 150px; */
+
+    /* Rows adapt to their content */
+    /* grid-auto-rows: auto; */
+
+
+    /* --------------------------------------
+       GRID GAPS
+    -------------------------------------- */
+
+    gap: 15px;
+
+    /* Separate horizontal and vertical gaps */
+    /* column-gap: 30px; */
+    /* row-gap: 20px; */
+
+
+    /* --------------------------------------
+       ALIGN ITEMS
+    -------------------------------------- */
+
+    /* Stretch is the default */
+    /* align-items: stretch; */
+
+    /* Align content to the top */
+    /* align-items: start; */
+
+    /* Align content to the bottom */
+    /* align-items: end; */
+
+    /* Center content vertically */
+    /* align-items: center; */
+
+    /* Align items to the bottom (flexbox comparison) */
+    /* align-items: flex-end; */
+
+    /* Align items to the top (flexbox comparison) */
+    /* align-items: flex-start; */
+
+
+    /* --------------------------------------
+       JUSTIFY ITEMS
+    -------------------------------------- */
+
+    /* Align items horizontally at the start */
+    /* justify-items: start; */
+
+    /* Align items horizontally at the end */
+    /* justify-items: end; */
+
+    /* Center items horizontally */
+    /* justify-items: center; */
+
+    /* Stretch items horizontally */
+    /* justify-items: stretch; */
+
+
+    /* --------------------------------------
+       ALIGN CONTENT
+    -------------------------------------- */
+
+    /* Align the entire grid vertically */
+    /* align-content: start; */
+    /* align-content: end; */
+    /* align-content: center; */
+    /* align-content: space-between; */
+    /* align-content: space-around; */
+    /* align-content: space-evenly; */
+
+
+    /* --------------------------------------
+       JUSTIFY CONTENT
+    -------------------------------------- */
+
+    /* Align the entire grid horizontally */
+    /* justify-content: start; */
+    /* justify-content: end; */
+    /* justify-content: center; */
+    /* justify-content: space-between; */
+    /* justify-content: space-around; */
+    /* justify-content: space-evenly; */
+
+    /* --------------------------------------
+       GRID SIZE
+    -------------------------------------- */
+
+    width: 100%;
+    min-height: 600px;
+
+    background: white;
+    padding: 15px;
+    border: 3px dashed #888;
+
+}
+
+
+/* ==========================================
+   3. GRID ITEMS
+========================================== */
+
+.grid-item {
+
+    background: #3578c8;
+    color: white;
+
+    padding: 20px;
+
+    border-radius: 8px;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100px;
+
+}
+
+
+/* ==========================================
+   4. DIFFERENT ITEM COLORS
+========================================== */
+
+.item-1 { background: #3578c8; }
+.item-2 { background: #16a085; }
+.item-3 { background: #8e63b5; }
+.item-4 { background: #e67e22; }
+.item-5 { background: #d35454; }
+.item-6 { background: #287f91; }
+.item-7 { background: #596579; }
+.item-8 { background: #a15d91; }
+
+
+/* ==========================================
+   5. GRID-COLUMN: SPAN
+========================================== */
+
+/* Item 1 occupies two columns */
+
+/* .item-1 { 
+    grid-column: span 2;
+} */
+
+
+/* Item 1 occupies three columns */
+/*
+.item-1 {
+    grid-column: span 3;
+}
+*/
+
+/* Item 1 starts at column 1 and ends at column 3 */
+/*
+.item-1 {
+    grid-column: 1 / 3;
+}
+*/
+
+/* Item 1 starts at column 2 and ends at column 4 */
+/*
+.item-1 {
+    grid-column: 2 / 4;
+}
+*/
+
+
+/* ==========================================
+   6. GRID-ROW: SPAN
+========================================== */
+
+/* Item 2 occupies two rows */
+/*
+.item-2 {
+    grid-row: span 2;
+}
+*/
+
+/* Item 2 occupies three rows */
+/*
+.item-2 {
+    grid-row: span 3;
+}
+*/
+
+/* ==========================================
+   8. ALIGNING INDIVIDUAL ITEMS
+========================================== */
+
+/* Align only item 1 at the bottom */
+
+/* .item-1 { */
+    /* align-self: end; */
+/* } */
+
+
+/* Align only item 1 at the top */
+/*
+.item-1 {
+    align-self: start;
+}
+*/
+
+/* Align only item 1 in the center */
+/*
+.item-1 {
+    align-self: center;
+}
+*/
+
+/* Align only item 1 horizontally in the center */
+/*
+.item-1 {
+    justify-self: center;
+}
+*/
+
+
+
+/* ==========================================
+   9. RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width: 700px) {
+
+    .grid-container {
+
+        /* Two columns on smaller screens */
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    .grid-container {
+
+        /* One column on very small screens */
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<h1>CSS Grid</h1>
+
+<div class="grid-container">
+
+    <div class="grid-item item-1">1</div>
+    <div class="grid-item item-2">2</div>
+    <div class="grid-item item-3">3</div>
+    <div class="grid-item item-4">4</div>
+    <div class="grid-item item-5">5</div>
+    <div class="grid-item item-6">6</div>
+    <div class="grid-item item-7">7</div>
+    <div class="grid-item item-8">8</div>
+
+</div>
+
+</body>
+</html>
