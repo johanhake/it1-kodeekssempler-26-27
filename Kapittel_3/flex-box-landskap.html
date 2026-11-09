@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        section {
+            height: 68vh;
+            display: flex;
+
+        }
+
+        article {
+            background-position: center;
+            background-size: cover;
+            padding: 1rem;
+            display: flex;
+            align-items: flex-start;
+            color: white;
+            flex: 1;
+            font-size: 50%;
+            transition: 0.5s;
+        }
+
+        article:hover {
+            font-size: 150%;
+            flex: 2;
+        }
+
+        .skog {
+            background-image: url("./bilder/skog.jpg");
+        }
+
+        .fjell {
+            background-image: url("./bilder/fjell.jpg");
+        }
+
+        .vann {
+            background-image: url("./bilder/vann.jpg");
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <article class="skog">
+            <div>
+                <h1>Naturen er vakker</h1>
+                <h2>Sjekk for mer info</h2>
+            </div>
+        </article>
+        <article class="fjell">
+            <div>
+                <h1>Fjellet er stort</h1>
+                <h2>Fett as, se på det!</h2>
+            </div>
+        </article>
+        <article class="vann">
+            <div>
+                <h1>Stranda er fin!</h1>
+                <h2>Ingen vann, ingen liv...</h2>
+            </div>
+        </article>
+    </section>
+
+</body>
+
+</html>
