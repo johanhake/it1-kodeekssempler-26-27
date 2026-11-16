@@ -1,26 +1,102 @@
 <!DOCTYPE html>
 <html lang="no">
+
 <head>
   <meta charset="UTF-8">
   <title>Bildegalleri</title>
   <style>
+
+    body{
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    header h1{
+      font-size: 10vw;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      width: 100%;
+    }
+
+    nav a {
+      padding: 10px;
+      border: 1px solid black;
+      flex-basis: 150px;
+      flex-shrink: 1;
+    }
+
+    nav div {
+      flex-grow: 1;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    main img {
+      width: 100%;
+      transition: 0.5s;
+    }
+
+    main img:hover{
+      filter: sepia(75%);
+    }
+
+    .to-kolonner {
+      grid-column: span 2;
+    }
+
+    .tre-kolonner {
+      grid-column: span 3;
+    }
+
+    .fjern-tre-kolonner {
+      display: none;
+    }
+
+    @media screen and (max-width: 960px) {
+      main {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .fjern-to-kolonner {
+        display: none;
+      }
+
+      .fjern-tre-kolonner {
+        display: inline;
+      }
+
+    }
   </style>
 </head>
+
 <body>
-  <h1>Tregalleri</h1>
-  <a href="">Lenke 1</a>
-  <a href="">Lenke 2</a>
-  <a href="">Lenke 3</a>
-  <a href="">Lenke 4</a>
-  <a href="">Hjem</a>
-  <img src="bilder/tre-lang-rektangel-1.jpg">
-  <!-- <img src="bilder/tre-rektangel-1.jpg"> -->
-  <img src="bilder/tre-kvadrat-1.jpg">
-  <img src="bilder/tre-kvadrat-2.jpg">
-  <img src="bilder/tre-kvadrat-3.jpg">
-  <img src="bilder/tre-kvadrat-4.jpg">
-  <img src="bilder/tre-rektangel-2.jpg">
-  <img src="bilder/tre-rektangel-3.jpg">
-  <img src="bilder/tre-kvadrat-5.jpg">
+  <header>
+    <h1>Tregalleri</h1>
+    <nav>
+      <a href="">Lenke 1</a>
+      <a href="">Lenke 2</a>
+      <a href="">Lenke 3</a>
+      <a href="">Lenke 4</a>
+      <div></div>
+      <a href="">Hjem</a>
+    </nav>
+  </header>
+  <main>
+    <img class="tre-kolonner fjern-to-kolonner" src="bilder/tre-lang-rektangel-1.jpg">
+    <img class="to-kolonner fjern-tre-kolonner" src="bilder/tre-rektangel-1.jpg">
+    <img src="bilder/tre-kvadrat-1.jpg">
+    <img src="bilder/tre-kvadrat-2.jpg">
+    <img src="bilder/tre-kvadrat-3.jpg">
+    <img src="bilder/tre-kvadrat-4.jpg">
+    <img class="to-kolonner" src="bilder/tre-rektangel-2.jpg">
+    <img class="to-kolonner" src="bilder/tre-rektangel-3.jpg">
+    <img class="fjern-to-kolonner" src="bilder/tre-kvadrat-5.jpg">
+  </main>
 </body>
+
 </html>
