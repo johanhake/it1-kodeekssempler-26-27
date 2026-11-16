@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flexbox og Grid – oversikt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&family=Overpass+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: rolig, presis oppslagsside for elever i IT1 – en "legend" til et kart
+   IDEA: kartlegenden – hver egenskap er en tegnforklaring med levende eksempler
+   PICTURE: ekte CSS-demoer for hver verdi, pluss to oversiktsdiagram (akser / gridlinjer)
+   COLOUR and TYPE: land #fbfbf2, blekk #13242e, sjøblå for flex, magenta for grid, brunt for markert item; Overpass
+   LAYOUT: to bånd (Flex, Grid), hver delt i Container og Item, verdier som rutenett av små kort */
+:root{color-scheme:light dark;
+--bg:light-dark(#fbfbf2,#0d1c24);--ink:light-dark(#13242e,#e6eef0);--mute:light-dark(#4d5f68,#9fb2ba);
+--line:light-dark(#d9ddd2,#244050);--card:light-dark(#ffffff,#122833);
+--hl:light-dark(#a8551b,#e8955a);--sea:light-dark(#bfe3ee,#123544)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Overpass,system-ui,sans-serif;overflow-x:clip}
+code,.code{font-family:"Overpass Mono",ui-monospace,monospace}
+.band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+header.band{background:var(--sea);padding-bottom:clamp(24px,3vw,40px)}
+h1{font-size:clamp(32px,5vw,52px);line-height:1.05;margin:0 0 12px;text-wrap:balance;font-weight:800}
+.lead{max-width:68ch;margin:0 0 20px;font-size:17px}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
+.lg{background:var(--card);border-radius:10px;padding:14px 16px;border:1px solid var(--line)}
+.lg pre{margin:8px 0 0;font:14px/1.5 "Overpass Mono",monospace;overflow-x:auto}
+nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:22px;font-weight:800;text-decoration:none;color:#fff;background:var(--ac)}
+nav a:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.flex{--ac:light-dark(#0b6e99,#4fb3d9);--tint:light-dark(#e3f2f7,#14323f)}
+.grid{--ac:light-dark(#c2116f,#ff6fb5);--tint:light-dark(#fbe8f2,#38172a)}
+section.band+section.band{border-top:6px solid var(--ac)}
+h2{font-size:clamp(28px,4vw,40px);line-height:1.05;margin:0 0 6px;color:var(--ac)}
+h3{font-size:22px;margin:36px 0 4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.chip{font-size:13px;font-weight:800;padding:3px 10px;border-radius:12px;border:2px solid var(--ac);color:var(--ac)}
+.chip.c{background:var(--ac);color:var(--bg)}
+.sub{color:var(--mute);margin:0 0 14px;max-width:70ch}
+.intro{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(16px,3vw,40px);align-items:center;margin-top:12px}
+.intro svg{width:100%;height:auto;display:block}
+.intro p{margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px clamp(12px,2vw,20px) 18px;margin-top:14px;break-inside:avoid}
+.ph{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.ph code{font-size:20px;font-weight:700;color:var(--ac)}
+.ph .std{font-size:14px;color:var(--mute)}
+.card>p{margin:4px 0 12px;max-width:75ch}
+.vals{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,172px),1fr));gap:12px}
+.t{border:1px solid var(--line);border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:6px}
+.t.def{border-color:var(--ac);box-shadow:inset 0 0 0 1px var(--ac)}
+.tc{font:13px/1.35 "Overpass Mono",monospace;font-weight:700;overflow-wrap:anywhere}
+.tc b{font-family:Overpass,sans-serif;font-size:13px;color:var(--ac);margin-left:4px}
+.tn{font-size:13px;color:var(--mute);line-height:1.35}
+.demo{background:var(--tint);border-radius:6px;padding:5px;min-height:96px}
+.demo.h{height:118px}
+.i{background:var(--ac);color:var(--bg);font:700 14px/1 "Overpass Mono",monospace;padding:6px 9px;border-radius:4px;min-width:26px;text-align:center;display:flex;align-items:center;justify-content:center}
+.i.hl{background:var(--hl)}
+.gx{position:relative;height:96px}
+.gx>div{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:4px}
+.gh span{border:1px dashed color-mix(in srgb,var(--ac) 45%,transparent);border-radius:4px}
+.note{margin-top:12px;font-size:15px;color:var(--mute);max-width:75ch}
+footer{color:var(--mute);font-size:14px}
+@media(max-width:700px){.intro{grid-template-columns:minmax(0,1fr)}}
+@media print{header.band{background:none}.band{padding:16px 0}nav{display:none}.card{border-color:#999}}
+</style>
+</head>
+<body>
+<header class="band">
+ <div class="wrap">
+  <h1>Flexbox og Grid – CSS-egenskapene vi har gått gjennom</h1>
+  <p class="lead">Hvert lille eksempel under er ekte CSS: boksen bruker akkurat den verdien som står over den. Kortet med farget kant er standardverdien – det du får hvis du ikke skriver noe.</p>
+  <div class="legend">
+   <div class="lg"><strong>Container</strong> = forelderen. Den får <code>display: flex</code> eller <code>display: grid</code>, og bestemmer hvordan barna plasseres.
+<pre>.container {
+  display: flex; /* eller grid */
+}</pre></div>
+   <div class="lg"><strong>Item</strong> = hvert barn rett inni containeren. Item-egenskaper skrives på barnet og gjelder bare det ene elementet.
+<pre>.container &gt; .item {
+  flex-grow: 1;
+}</pre></div>
+   <div class="lg"><strong>Fargekode i eksemplene</strong><br>Nummererte bokser er items. Den <span style="color:var(--hl);font-weight:800">brune</span> er itemet egenskapen er satt på. Den lyse flaten er containeren.</div>
+  </div>
+  <nav class="flex"><a href="#flex">Flexbox</a><a href="#grid" style="--ac:light-dark(#c2116f,#ff6fb5)">Grid</a></nav>
+ </div>
+</header>
+
+<section class="band flex" id="flex">
+ <div class="wrap">
+  <h2>Flexbox</h2>
+  <div class="intro">
+   <svg viewBox="0 0 560 260" role="img" aria-label="Flex-container med tre items, hovedakse vannrett og tverrakse loddrett">
+    <rect x="40" y="20" width="440" height="180" rx="8" fill="var(--tint)" stroke="var(--ac)" stroke-width="2"/>
+    <text x="466" y="44" text-anchor="end" font-size="15" font-weight="700" fill="var(--ac)">flex-container</text>
+    <g fill="var(--ac)"><rect x="60" y="56" width="64" height="124" rx="5"/><rect x="138" y="56" width="64" height="124" rx="5"/><rect x="216" y="56" width="64" height="124" rx="5"/></g>
+    <g fill="var(--bg)" font-size="20" font-weight="700" text-anchor="middle"><text x="92" y="125">1</text><text x="170" y="125">2</text><text x="248" y="125">3</text></g>
+    <text x="296" y="123" font-size="15" fill="currentColor">← flex-items</text>
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
+    <line x1="40" y1="222" x2="478" y2="222" stroke="currentColor" stroke-width="2" marker-end="url(#ar)"/>
+    <text x="260" y="250" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">hovedakse (main axis)</text>
+    <line x1="505" y1="20" x2="505" y2="198" stroke="currentColor" stroke-width="2" marker-end="url(#ar)"/>
+    <text transform="translate(535 110) rotate(90)" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">tverrakse</text>
+   </svg>
+   <div>
+    <p><strong>Flexbox legger items på én linje</strong> – enten vannrett eller loddrett.</p>
+    <p><code>flex-direction</code> bestemmer retningen på <strong>hovedaksen</strong>. <code>justify-content</code> fordeler items langs hovedaksen.</p>
+    <p><code>align-items</code> og <code>align-self</code> plasserer items langs <strong>tverraksen</strong>.</p>
+    <p>Med <code>flex-direction: column</code> bytter aksene plass: da blir justify loddrett og align vannrett.</p>
+   </div>
+  </div>
+  <h3><span class="chip c">Container</span> Egenskaper på flex-containeren</h3>
+  <div id="flex-c"></div>
+  <h3><span class="chip">Item</span> Egenskaper på flex-items</h3>
+  <div id="flex-i"></div>
+ </div>
+</section>
+
+<section class="band grid" id="grid">
+ <div class="wrap">
+  <h2>Grid</h2>
+  <div class="intro">
+   <svg viewBox="0 0 560 280" role="img" aria-label="Grid med tre kolonner og to rader, nummererte gridlinjer, en celle og et område">
+    <g stroke="var(--ac)" stroke-dasharray="4 4" stroke-width="1.5">
+     <line x1="60" y1="30" x2="60" y2="252"/><line x1="191" y1="30" x2="191" y2="252"/><line x1="329" y1="30" x2="329" y2="252"/><line x1="460" y1="30" x2="460" y2="252"/>
+     <line x1="44" y1="40" x2="472" y2="40"/><line x1="44" y1="140" x2="472" y2="140"/><line x1="44" y1="240" x2="472" y2="240"/>
+    </g>
+    <g font-size="15" font-weight="800" fill="var(--ac)" text-anchor="middle">
+     <text x="60" y="22">1</text><text x="191" y="22">2</text><text x="329" y="22">3</text><text x="460" y="22">4</text>
+     <text x="30" y="45">1</text><text x="30" y="145">2</text><text x="30" y="245">3</text>
+    </g>
+    <g fill="var(--tint)" stroke="var(--ac)" stroke-width="1.5">
+     <rect x="63" y="43" width="122" height="91" rx="4" fill="var(--ac)"/><rect x="197" y="43" width="126" height="91" rx="4"/><rect x="335" y="43" width="122" height="91" rx="4"/>
+     <rect x="63" y="146" width="122" height="91" rx="4"/><rect x="197" y="146" width="260" height="91" rx="4" fill="var(--hl)" stroke="none"/>
+    </g>
+    <text x="124" y="94" text-anchor="middle" font-size="16" font-weight="700" fill="var(--bg)">celle</text>
+    <text x="327" y="188" text-anchor="middle" font-size="16" font-weight="700" fill="var(--bg)">område</text>
+    <text x="327" y="210" text-anchor="middle" font-size="14" fill="var(--bg)" class="code">grid-column: 2 / 4</text>
+    <text x="490" y="145" font-size="15" font-weight="700" fill="currentColor">gap</text>
+    <line x1="486" y1="140" x2="462" y2="140" stroke="currentColor" stroke-width="1.5"/>
+    <text x="260" y="274" text-anchor="middle" font-size="15" fill="currentColor">stiplede streker = gridlinjer, nummerert fra 1</text>
+   </svg>
+   <div>
+    <p><strong>Grid deler containeren i kolonner og rader</strong> – i to retninger samtidig.</p>
+    <p><code>grid-template-columns</code> og <code>grid-template-rows</code> lager sporene (tracks). Enheten <code>fr</code> betyr «en andel av plassen som er igjen».</p>
+    <p>Mellom sporene går <strong>gridlinjer</strong>. Items plasseres med linjenummer: <code>grid-column: 2 / 4</code> = fra linje 2 til linje 4. <code>-1</code> er alltid siste linje.</p>
+    <p><code>justify-…</code> virker vannrett (langs radene), <code>align-…</code> loddrett (langs kolonnene).</p>
+   </div>
+  </div>
+  <h3><span class="chip c">Container</span> Egenskaper på grid-containeren</h3>
+  <div id="grid-c"></div>
+  <p class="note"><strong>Huskeregel:</strong> <code>justify-items</code> / <code>align-items</code> flytter hvert item inni sin egen celle. <code>justify-content</code> / <code>align-content</code> flytter hele rutenettet inni containeren – det virker bare når sporene til sammen er mindre enn containeren.</p>
+  <h3><span class="chip">Item</span> Egenskaper på grid-items</h3>
+  <div id="grid-i"></div>
+  <p class="note">Stiplede ruter viser cellene i et 3 × 3-grid. Det brune itemet er plassert med verdien over.</p>
+ </div>
+</section>
+
+<footer class="band"><div class="wrap">Oversikt for IT1 · Flexbox og Grid. Mer å lese: <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">A Complete Guide to Flexbox</a> og <a href="https://css-tricks.com/complete-guide-css-grid-layout/">A Complete Guide to CSS Grid</a> (CSS-Tricks).</div></footer>
+
+<script>
+{
+const n=(k,s='')=>Array.from({length:k},(_,i)=>({t:i+1,s}));
+const box=(cs,items,cls='')=>`<div class="demo ${cls}" style="${cs}">${items.map(it=>`<div class="i${it.h?' hl':''}" style="${it.s||''}">${it.t}</div>`).join('')}</div>`;
+const one=(k,idx,s)=>n(k).map((it,i)=>i===idx?{...it,s,h:1}:it);
+const gp=(pos)=>`<div class="gx"><div class="gh">${'<span></span>'.repeat(9)}</div><div><div class="i hl" style="${pos}">★</div></div></div>`;
+const FX='display:flex;';
+const GR='display:grid;';
+const AI=[{t:1,s:'font-size:12px;padding:4px 9px'},{t:2,s:'font-size:22px;padding:14px 9px'},{t:3,s:'font-size:16px;padding:8px 9px'}];
+
+const data={
+'flex-c':[
+ {p:'flex-direction',std:'row',d:'Retningen items legges i (hovedaksen).',
+  v:['row','row-reverse','column','column-reverse'].map(x=>({c:x,demo:box(FX+'flex-direction:'+x,n(3),'h')}))},
+ {p:'justify-content',std:'flex-start',d:'Fordeler items og ledig plass langs hovedaksen.',
+  v:['flex-start','flex-end','center','space-between','space-around','space-evenly'].map(x=>({c:x,demo:box(FX+'justify-content:'+x,n(3))}))},
+ {p:'align-items',std:'stretch',d:'Plasserer items langs tverraksen. stretch strekker items til full høyde.',
+  v:['stretch','flex-start','flex-end','center','baseline'].map(x=>({c:x,demo:box(FX+'height:96px;align-items:'+x,AI),n:x==='baseline'?'Tekstens grunnlinje står på linje.':''}))},
+ {p:'gap',std:'0',d:'Avstand mellom items. Verdi: en lengde (px, rem, % …). To verdier = rad-avstand kolonne-avstand.',
+  v:['0','8px','24px'].map(x=>({c:x,demo:box(FX+'gap:'+x,n(3))})).concat([{c:'10px 30px',n:'Rad-avstanden synes først når items brytes over flere linjer. Kan også skrives som row-gap og column-gap.',demo:box(FX+'flex-wrap:wrap;gap:10px 30px',n(5))}])}
+],
+'flex-i':[
+ {p:'order',std:'0',d:'Endrer rekkefølgen items vises i, uten å endre HTML-en. Verdi: et heltall. Lavest kommer først.',
+  v:[{c:'0',n:'Alle har 0 – HTML-rekkefølge.',demo:box(FX,n(3))},{c:'-1',n:'På item 3 → flyttes først.',demo:box(FX,one(3,2,'order:-1'))},{c:'1',n:'På item 1 → flyttes sist.',demo:box(FX,one(3,0,'order:1'))}]},
+ {p:'flex-grow',std:'0',d:'Hvor stor andel av den ledige plassen itemet skal vokse med. Verdi: et tall (0, 1, 2 …).',
+  v:[{c:'0',n:'Ingen vokser.',demo:box(FX,n(3))},{c:'1',n:'Bare på item 2.',demo:box(FX,one(3,1,'flex-grow:1'))},{c:'1',n:'På alle → deler likt.',demo:box(FX,n(3,'flex-grow:1'))},{c:'1 · 2 · 1',n:'Item 2 får dobbelt så stor del av den ledige plassen.',demo:box(FX,[{t:1,s:'flex-grow:1'},{t:2,s:'flex-grow:2',h:1},{t:3,s:'flex-grow:1'}])}]},
+ {p:'flex-shrink',std:'1',d:'Hvor mye itemet skal krympe når det ikke er plass nok. Verdi: et tall. 0 = krymper ikke. (Her vil hvert item være 50 % bredt.)',
+  v:[{c:'1',n:'Alle krymper likt.',demo:box(FX,n(3,'flex-basis:50%'))},{c:'0',n:'På item 2 → beholder bredden sin.',demo:box(FX,n(3,'flex-basis:50%').map((it,i)=>i===1?{...it,s:'flex-basis:50%;flex-shrink:0',h:1}:it))}]},
+ {p:'flex-basis',std:'auto',d:'Startstørrelsen langs hovedaksen før vokse/krympe. Verdi: auto, en lengde (px, rem) eller prosent.',
+  v:[{c:'auto',n:'Størrelsen kommer fra innholdet.',demo:box(FX,n(3))},{c:'80px',n:'På item 2.',demo:box(FX,one(3,1,'flex-basis:80px'))},{c:'50%',n:'På item 2.',demo:box(FX,one(3,1,'flex-basis:50%'))}]},
+ {p:'flex',std:'0 1 auto',d:'Kortform for flex-grow, flex-shrink og flex-basis – i den rekkefølgen.',
+  v:[{c:'0 1 auto',n:'Standard: vokser ikke, kan krympe.',demo:box(FX,n(3))},{c:'1',n:'= 1 1 0. På item 2 → tar all ledig plass.',demo:box(FX,one(3,1,'flex:1'))},{c:'1',n:'På alle → like brede.',demo:box(FX,n(3,'flex:1'))},{c:'2',n:'På item 2, de andre har flex: 1.',demo:box(FX,[{t:1,s:'flex:1'},{t:2,s:'flex:2',h:1},{t:3,s:'flex:1'}])},{c:'none',n:'= 0 0 auto. Verken vokser eller krymper.',demo:box(FX,one(3,1,'flex:none'))}]},
+ {p:'align-self',std:'auto',d:'Overstyrer align-items for ett enkelt item. Samme verdier som align-items, pluss auto. (Containeren har align-items: flex-start.)',
+  v:['auto','flex-start','flex-end','center','stretch'].map(x=>({c:x,demo:box(FX+'height:96px;align-items:flex-start',one(3,1,'align-self:'+x)),n:x==='auto'?'Følger containerens align-items.':''}))}
+],
+'grid-c':[
+ {p:'grid-template-columns',std:'none',d:'Lager kolonnene. Én verdi per kolonne: px, %, fr, auto – eller repeat() og minmax().',
+  v:[{c:'none',n:'Én kolonne.',demo:box(GR,n(3))}].concat(['60px 60px 60px','1fr 1fr 1fr','1fr 2fr','repeat(3, 1fr)','80px 1fr','auto 1fr','repeat(auto-fill, minmax(50px, 1fr))'].map(x=>({c:x,demo:box(GR+'gap:4px;grid-template-columns:'+x,n(6)),n:x.startsWith('repeat(auto')?'Så mange kolonner som får plass, minst 50px brede.':x==='auto 1fr'?'auto = så bred som innholdet.':''})))},
+ {p:'grid-template-rows',std:'none',d:'Lager radene. Samme verdier som for kolonner. (Her: to kolonner, containeren er 118px høy.)',
+  v:[{c:'none',n:'Radene deler høyden.',demo:box(GR+'gap:4px;grid-template-columns:1fr 1fr',n(4),'h')}].concat(['30px 60px','1fr 2fr','repeat(2, 40px)'].map(x=>({c:x,demo:box(GR+'gap:4px;grid-template-columns:1fr 1fr;grid-template-rows:'+x,n(4),'h')})))},
+ {p:'justify-items',std:'stretch',d:'Plasserer hvert item vannrett inni cellen sin.',
+  v:['stretch','start','end','center'].map(x=>({c:x,demo:box(GR+'gap:4px;grid-template-columns:repeat(3,1fr);justify-items:'+x,n(6))}))},
+ {p:'align-items',std:'stretch',d:'Plasserer hvert item loddrett inni cellen sin. (Radene er 42px høye.)',
+  v:['stretch','start','end','center'].map(x=>({c:x,demo:box(GR+'gap:4px;grid-template-columns:repeat(3,1fr);grid-auto-rows:42px;align-items:'+x,n(6))}))},
+ {p:'justify-content',std:'start',d:'Flytter hele rutenettet vannrett i containeren. (Kolonnene er 36px brede.)',
+  v:['start','end','center','space-between','space-around','space-evenly'].map(x=>({c:x,demo:box(GR+'gap:4px;grid-template-columns:repeat(3,36px);justify-content:'+x,n(6))}))},
+ {p:'align-content',std:'start',d:'Flytter hele rutenettet loddrett i containeren. (Radene er 30px høye, containeren 118px.)',
+  v:['start','end','center','space-between','space-around','space-evenly'].map(x=>({c:x,demo:box(GR+'gap:4px;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,30px);align-content:'+x,n(6),'h')}))},
+ {p:'gap',std:'0',d:'Avstand mellom rader og kolonner. To verdier = rad-avstand kolonne-avstand. Kan også skrives som row-gap og column-gap.',
+  v:['0','8px','16px 4px','4px 16px'].map(x=>({c:x,demo:box(GR+'grid-template-columns:repeat(3,1fr);gap:'+x,n(6))}))}
+],
+'grid-i':[
+ {p:'grid-column',std:'auto',d:'Hvilke kolonne-linjer itemet går fra / til. Verdi: start / slutt, eller span antall.',
+  v:[{c:'auto',n:'Plasseres automatisk i én celle.',pos:'grid-row:2'},{c:'1 / 3',n:'Fra linje 1 til linje 3.'},{c:'2 / 4'},{c:'1 / -1',n:'Hele bredden (-1 = siste linje).'},{c:'span 2',n:'Går over 2 kolonner.'},{c:'2 / span 2',n:'Starter på linje 2, går over 2.'}]
+   .map(o=>({...o,demo:gp((o.pos||'')+(o.c==='auto'?'':';grid-row:2;grid-column:'+o.c))}))},
+ {p:'grid-row',std:'auto',d:'Hvilke rad-linjer itemet går fra / til. Samme verdier som grid-column.',
+  v:[{c:'auto',n:'Plasseres automatisk i én celle.'},{c:'1 / 3',n:'Fra linje 1 til linje 3.'},{c:'2 / 4'},{c:'1 / -1',n:'Hele høyden.'},{c:'span 2',n:'Går over 2 rader.'}]
+   .map(o=>({...o,demo:gp('grid-column:2'+(o.c==='auto'?'':';grid-row:'+o.c))}))}
+]};
+
+for(const id in data){
+ document.getElementById(id).innerHTML=data[id].map(P=>`<div class="card"><div class="ph"><code>${P.p}</code><span class="std">standard: <code>${P.std}</code></span></div><p>${P.d}</p><div class="vals">${P.v.map(v=>`<div class="t${v.c===P.std&&!v.x?' def':''}"><div class="tc">${P.p}: ${v.c};${v.c===P.std?'<b>standard</b>':''}</div>${v.demo}${v.n?`<div class="tn">${v.n}</div>`:''}</div>`).join('')}</div></div>`).join('');
+}
+}
+</script>
+</body>
+</html>
