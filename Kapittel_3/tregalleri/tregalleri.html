@@ -15,19 +15,19 @@
       text-align: center;
     }
 
-    nav {
+    header nav {
       display: flex;
       width: 100%;
     }
 
-    nav a {
+    header nav a {
       padding: 10px;
       border: 1px solid black;
       flex-basis: 150px;
       flex-shrink: 1;
     }
 
-    nav div {
+    header nav div {
       flex-grow: 1;
     }
 
@@ -36,12 +36,12 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
-    main img {
+    main a img {
       width: 100%;
       transition: 0.5s;
     }
 
-    main img:hover{
+    main a img:hover{
       filter: sepia(75%);
     }
 
@@ -87,15 +87,15 @@
     </nav>
   </header>
   <main>
-    <img class="tre-kolonner fjern-to-kolonner" src="bilder/tre-lang-rektangel-1.jpg">
-    <img class="to-kolonner fjern-tre-kolonner" src="bilder/tre-rektangel-1.jpg">
-    <img src="bilder/tre-kvadrat-1.jpg">
-    <img src="bilder/tre-kvadrat-2.jpg">
-    <img src="bilder/tre-kvadrat-3.jpg">
-    <img src="bilder/tre-kvadrat-4.jpg">
-    <img class="to-kolonner" src="bilder/tre-rektangel-2.jpg">
-    <img class="to-kolonner" src="bilder/tre-rektangel-3.jpg">
-    <img class="fjern-to-kolonner" src="bilder/tre-kvadrat-5.jpg">
+    <a href="#" class="tre-kolonner fjern-to-kolonner"><img src="bilder/tre-lang-rektangel-1.jpg"></a>
+    <a href="#" class="to-kolonner fjern-tre-kolonner"><img src="bilder/tre-rektangel-1.jpg"></a>
+    <a href="#"><img src="bilder/tre-kvadrat-1.jpg"></a>
+    <a href="#"><img src="bilder/tre-kvadrat-2.jpg"></a>
+    <a href="#"><img src="bilder/tre-kvadrat-3.jpg"></a>
+    <a href="#"><img src="bilder/tre-kvadrat-4.jpg"></a>
+    <a href="#" class="to-kolonner" ><img src="bilder/tre-rektangel-2.jpg"></a>
+    <a href="#" class="to-kolonner"><img src="bilder/tre-rektangel-3.jpg"></a>
+    <a href="#" class="fjern-to-kolonner"><img src="bilder/tre-kvadrat-5.jpg"></a>
   </main>
 </body>
 
